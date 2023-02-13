@@ -1,7 +1,7 @@
 import {AuthItemsWrapper, AuthWrapper} from "./styled";
 import {useEvent, useStore} from "effector-react";
 import * as model from './model'
-import {AuthType, userApi} from "shared/api";
+import {AuthType} from "shared/api";
 import {useNavigate} from "react-router-dom";
 import {ChangeEvent, useEffect} from "react";
 import {Input, Button} from "shared/lib/uiKit";
@@ -17,7 +17,7 @@ export const AuthPage = () => {
     const userLogin = useEvent(userEntity.userLogin)
     const authTypeChanged = useEvent(model.authTypeChanged)
 
-    const user = useStore(userApi.$user)
+    const user = useStore(userEntity.$user)
     const authType = useStore(model.$authType)
     const nickname = useStore(model.$nickname)
     const email = useStore(model.$email)

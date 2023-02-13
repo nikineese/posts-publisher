@@ -9,13 +9,13 @@ import {
 import {createGuid} from "shared/lib/guid";
 import {ExpandingInput} from "shared/lib/uiKit";
 import {Wrapper} from "../styled";
-import {PostsList} from "entities/posts";
-import { userApi } from "shared/api";
+import {PostsList} from "widgets";
+import { userEntity } from "entities/user";
 
 
 export const PostsPage = () => {
     const message = useStore(postsPageModel.$postMessage)
-    const user = useStore(userApi.$user)
+    const user = useStore(userEntity.$user)
 
     const handlePostMessageChange = useEvent(postsPageModel.postMessageChanged)
     const handlePublishPost = useEvent(postsPageModel.postPublishClicked)

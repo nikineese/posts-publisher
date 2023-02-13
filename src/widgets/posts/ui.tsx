@@ -3,11 +3,12 @@ import * as postsModel from "./model";
 import {format} from "date-fns";
 import {DateFormats} from "shared/lib/constants";
 import {PostsListDeleteButton, PostsListItem, PostsListNickname, PostsListWrapper} from "./styled";
-import {User, userApi} from "shared/api";
+import {User} from "shared/api";
+import {userEntity} from 'entities/user'
 
 export const PostsList = ({ user }: { user?: User | null }) => {
 
-    const authorizedUser = useStore(userApi.$user)
+    const authorizedUser = useStore(userEntity.$user)
 
     const handleDeletePost = useEvent(postsModel.postDeleteClicked)
 

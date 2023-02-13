@@ -8,7 +8,7 @@ import {useEvent} from "effector-react";
 import * as authModel from './auth/model'
 import {PagesWrapperS} from "./styled";
 import {ProfilePage} from "./profile";
-import {Header} from "entities/header";
+import {Header} from "widgets";
 export const Pages = () => {
     const handleUserChange = useEvent(authModel.userChanged)
     useEffect(() => {

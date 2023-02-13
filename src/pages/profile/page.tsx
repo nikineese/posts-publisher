@@ -3,15 +3,14 @@ import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import {ProfileEmail, ProfileLogoutButton, ProfileNickname, ProfilePostsWrapper, ProfileWrapper} from "./styled";
 import {Wrapper} from "../styled";
-import {PostsList} from "entities/posts";
+import {PostsList} from "widgets";
 import { userEntity } from 'entities/user'
-import { userApi } from "shared/api";
 export const ProfilePage = () => {
     const navigate = useNavigate()
 
     const userSignOut = useEvent(userEntity.userSignOut)
 
-    const user = useStore(userApi.$user)
+    const user = useStore(userEntity.$user)
 
     useEffect(() => {
         if (!user){

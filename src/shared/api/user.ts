@@ -1,4 +1,4 @@
-import {createEffect, createStore} from "effector";
+import {createEffect} from "effector";
 import {doc, getDoc, setDoc} from "firebase/firestore";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import {auth, db} from "./firebase";
@@ -48,6 +48,3 @@ export const signOutUserFx = createEffect(async () => {
     await signOut(auth)
     return
 })
-
-export const $user = createStore<User | null>(null)
-$user.on(getAuthUserFx.doneData, (_, user) => user)

@@ -1,9 +1,9 @@
 import {useStore} from "effector-react";
 import {HeaderWrapper, NavLinkS} from "./styled";
-import { userApi } from "shared/api";
+import { userEntity } from 'entities/user'
 
 export const Header = () => {
-    const user = useStore(userApi.$user)
+    const user = useStore(userEntity.$user)
 
     return (
         <HeaderWrapper>
