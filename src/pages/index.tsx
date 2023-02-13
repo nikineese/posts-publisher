@@ -23,15 +23,13 @@ export const Pages = () => {
     })
     return (
     <BrowserRouter>
-        <div>
-            <Header/>
-            <PagesWrapperS>
-                <Routes>
-                    <Route path='/' element={<PostsPage/>} />
-                    <Route path='/auth' element={<AuthPage/>} />
-                    <Route path='/profile' element={<ProfilePage/>} />
-                </Routes>
-            </PagesWrapperS>
-        </div>
+        <Header/>
+        <PagesWrapperS>
+            <Routes>
+                <Route path='/' element={<PostsPage/>} />
+                <Route path='/auth' element={<AuthPage/>} />
+                <Route path='/profile' element={<ProfilePage/>} />
+            </Routes>
+        </PagesWrapperS>
     </BrowserRouter>
 )}

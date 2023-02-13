@@ -3,9 +3,7 @@ import {Post, postsApi} from "shared/api";
 
 export const postMessageChanged = createEvent<string>()
 export const postPublishClicked = createEvent<Post>()
-
 export const pageMounted = createEvent()
-
 
 export const $postMessage = restore(postMessageChanged, '').reset(postPublishClicked)
 
@@ -16,8 +14,6 @@ sample({
     },
     target: postsApi.publishPostFx,
 })
-
-
 
 sample({
     clock: pageMounted,
