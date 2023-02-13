@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
-import {colors} from "../../../shared/lib/constants";
+import {colors} from "shared/lib/constants";
 
 export const HeaderWrapper = styled.header`
   font-size: 20px;

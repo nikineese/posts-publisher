@@ -1,9 +1,9 @@
 import {useStore} from "effector-react";
-import * as authModel from 'pages/auth/model'
 import {HeaderWrapper, NavLinkS} from "./styled";
+import { userApi } from "shared/api";
 
 export const Header = () => {
-    const user = useStore(authModel.$user)
+    const user = useStore(userApi.$user)
 
     return (
         <HeaderWrapper>

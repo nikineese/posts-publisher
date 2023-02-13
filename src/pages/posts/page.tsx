@@ -1,20 +1,21 @@
 import {useEffect} from "react";
 import {useEvent, useStore} from "effector-react";
 import * as postsPageModel from './model'
-import * as authModel from '../auth/model'
 import {
     PostsListPublishButton,
     PostsPublishWrapper,
     PostsWrapper,
 } from "./styled";
 import {createGuid} from "shared/lib/guid";
-import {ExpandingInput} from "entities/general/input";
+import {ExpandingInput} from "shared/lib/uiKit";
 import {Wrapper} from "../styled";
 import {PostsList} from "entities/posts";
+import { userApi } from "shared/api";
+
 
 export const PostsPage = () => {
     const message = useStore(postsPageModel.$postMessage)
-    const user = useStore(authModel.$user)
+    const user = useStore(userApi.$user)
 
     const handlePostMessageChange = useEvent(postsPageModel.postMessageChanged)
     const handlePublishPost = useEvent(postsPageModel.postPublishClicked)

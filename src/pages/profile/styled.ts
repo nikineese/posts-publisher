@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {alignCss, colors} from "shared/lib/constants";
-import {Button} from "entities/general/button";
+import {Button} from "shared/lib/uiKit";
 
 export const ProfileWrapper = styled.div`
   position: relative;

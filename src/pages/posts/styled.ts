@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {colors} from "shared/lib/constants";
-import {Button} from "entities/general/button";
+import {Button} from "shared/lib/uiKit";
 
 
 export const PostsWrapper = styled.div`

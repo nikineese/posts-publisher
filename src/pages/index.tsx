@@ -3,12 +3,12 @@ import { PostsPage } from './posts'
 import {BrowserRouter, Route, Routes,} from "react-router-dom";
 import {AuthPage} from "./auth";
 import { onAuthStateChanged } from "firebase/auth";
-import {auth} from "../shared/api/firebase";
+import {auth} from "shared/api/firebase";
 import {useEvent} from "effector-react";
 import * as authModel from './auth/model'
-import {Header} from "entities/general/header";
 import {PagesWrapperS} from "./styled";
 import {ProfilePage} from "./profile";
+import {Header} from "entities/header";
 export const Pages = () => {
     const handleUserChange = useEvent(authModel.userChanged)
     useEffect(() => {

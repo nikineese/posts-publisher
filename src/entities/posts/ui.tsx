@@ -1,15 +1,13 @@
 import {useEvent, useList, useStore} from "effector-react";
 import * as postsModel from "./model";
-
 import {format} from "date-fns";
 import {DateFormats} from "shared/lib/constants";
 import {PostsListDeleteButton, PostsListItem, PostsListNickname, PostsListWrapper} from "./styled";
-import {User} from "shared/api";
-import * as authModel from "pages/auth/model";
+import {User, userApi} from "shared/api";
 
 export const PostsList = ({ user }: { user?: User | null }) => {
 
-    const authorizedUser = useStore(authModel.$user)
+    const authorizedUser = useStore(userApi.$user)
 
     const handleDeletePost = useEvent(postsModel.postDeleteClicked)
 

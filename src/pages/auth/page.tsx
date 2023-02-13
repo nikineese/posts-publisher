@@ -1,23 +1,23 @@
 import {AuthItemsWrapper, AuthWrapper} from "./styled";
 import {useEvent, useStore} from "effector-react";
 import * as model from './model'
-import {AuthType} from "shared/api";
+import {AuthType, userApi} from "shared/api";
 import {useNavigate} from "react-router-dom";
-import {Input} from "../../entities";
 import {ChangeEvent, useEffect} from "react";
-import {Button} from "entities/general/button";
+import {Input, Button} from "shared/lib/uiKit";
+import { userEntity } from "entities/user";
 
 export const AuthPage = () => {
     const navigate = useNavigate()
 
-    const userSignUp = useEvent(model.userSignUp)
+    const userSignUp = useEvent(userEntity.userSignUp)
     const nicknameChanged = useEvent(model.nicknameChanged)
     const emailChanged = useEvent(model.emailChanged)
     const passwordChanged = useEvent(model.passwordChanged)
-    const userLogin = useEvent(model.userLogin)
+    const userLogin = useEvent(userEntity.userLogin)
     const authTypeChanged = useEvent(model.authTypeChanged)
 
-    const user = useStore(model.$user)
+    const user = useStore(userApi.$user)
     const authType = useStore(model.$authType)
     const nickname = useStore(model.$nickname)
     const email = useStore(model.$email)
@@ -37,7 +37,10 @@ export const AuthPage = () => {
                 {!authType &&
                     <Input title='Username' type='text' value={nickname} onChange={(e: ChangeEvent<HTMLInputElement>) => nicknameChanged(e.target.value)} />}
                 <Input title='Password' type='password' value={password} onChange={(e: ChangeEvent<HTMLInputElement>) => passwordChanged(e.target.value)} />
-                <Button onClick={authType ? userLogin : userSignUp}>{authType ? AuthType.LOGIN : AuthType.SIGNUP}</Button>
+                <Button onClick={() =>
+                    authType ? userLogin({ email, password }) : userSignUp({ email, nickname, password })}>
+                    {authType ? AuthType.LOGIN : AuthType.SIGNUP}
+                </Button>
             </AuthItemsWrapper>
         </AuthWrapper>
     )

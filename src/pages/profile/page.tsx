@@ -1,16 +1,17 @@
 import {useEvent, useStore} from "effector-react";
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
-import * as authModel from "../auth/model";
 import {ProfileEmail, ProfileLogoutButton, ProfileNickname, ProfilePostsWrapper, ProfileWrapper} from "./styled";
 import {Wrapper} from "../styled";
-import {PostsList} from "../../entities/posts";
+import {PostsList} from "entities/posts";
+import { userEntity } from 'entities/user'
+import { userApi } from "shared/api";
 export const ProfilePage = () => {
     const navigate = useNavigate()
 
-    const userSignOut = useEvent(authModel.userSignOut)
+    const userSignOut = useEvent(userEntity.userSignOut)
 
-    const user = useStore(authModel.$user)
+    const user = useStore(userApi.$user)
 
     useEffect(() => {
         if (!user){
