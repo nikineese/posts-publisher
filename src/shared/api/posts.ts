@@ -16,6 +16,8 @@ export const loadPostsFx = createEffect(async () => {
     return posts.docs.map((post) => post.data() as Post).reverse()
 })
 export const publishPostFx = createEffect(async ({ id, author, publishedAt, message }: Post) => {
+    if (!author) throw new Error('Please authorize to send messages')
+    if (!message) throw new Error('Please enter valid message')
     const postsRef = doc(db, 'posts', id)
     await setDoc(postsRef, { id, author, message, publishedAt })
     const snapPost = await getDoc(postsRef)

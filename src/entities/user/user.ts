@@ -5,9 +5,9 @@ import { getAuthUserFx, User, UserLoginData, UserSignUpData } from "shared/api/u
 export const userSignUp = createEvent<UserSignUpData>()
 export const userLogin = createEvent<UserLoginData>()
 export const userSignOut = createEvent()
-
 export const $user = createStore<User | null>(null)
 $user.on(getAuthUserFx.doneData, (_, user) => user)
+
 
 sample({
     clock: userSignUp,

@@ -5,7 +5,7 @@ export const AuthWrapper = styled.div`
   justify-content: center;
   padding-top: 50px;
 `
-export const AuthItemsWrapper = styled.div`
+export const AuthItemsWrapper = styled.form`
   display: flex;
   justify-content: flex-start;
   align-items: center;

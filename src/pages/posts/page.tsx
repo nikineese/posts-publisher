@@ -1,27 +1,28 @@
 import {useEffect} from "react";
 import {useEvent, useStore} from "effector-react";
-import * as postsPageModel from './model'
+import * as model from './model'
 import {
     PostsListPublishButton,
     PostsPublishWrapper,
     PostsWrapper,
 } from "./styled";
 import {createGuid} from "shared/lib/guid";
-import {ExpandingInput} from "shared/lib/uiKit";
+import {ExpandingInput} from "shared/lib/ui";
 import {Wrapper} from "../styled";
 import {PostsList} from "widgets";
 import { userEntity } from "entities/user";
 
 
 export const PostsPage = () => {
-    const message = useStore(postsPageModel.$postMessage)
+    const message = useStore(model.$postMessage)
     const user = useStore(userEntity.$user)
+    const error = useStore(model.$error)
 
-    const handlePostMessageChange = useEvent(postsPageModel.postMessageChanged)
-    const handlePublishPost = useEvent(postsPageModel.postPublishClicked)
+    const handlePostMessageChange = useEvent(model.postMessageChanged)
+    const handlePublishPost = useEvent(model.postPublishClicked)
 
     useEffect(() => {
-        postsPageModel.pageMounted()
+        model.pageMounted()
     },[user])
 
     return (
@@ -32,10 +33,11 @@ export const PostsPage = () => {
                     handlePublishPost({ id: createGuid(), author: user, message, publishedAt: new Date().toISOString() })
                 }}>
                     <ExpandingInput
-                        id='message'
-                        value={message}
-                        onChange={(e) => handlePostMessageChange(e.target.value)}
-                        placeholder="What's news?"
+                      error={error}
+                      id='message'
+                      value={message}
+                      onChange={(e) => handlePostMessageChange(e.target.value)}
+                      placeholder={error.message ? error.message : "What's news?"}
                     />
                     <PostsListPublishButton type='submit'>Publish</PostsListPublishButton>
                 </PostsPublishWrapper>

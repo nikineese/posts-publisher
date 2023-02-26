@@ -4,7 +4,7 @@ import * as model from './model'
 import {AuthType} from "shared/api";
 import {useNavigate} from "react-router-dom";
 import {ChangeEvent, useEffect} from "react";
-import {Input, Button} from "shared/lib/uiKit";
+import {Input, Button} from "shared/lib/ui";
 import { userEntity } from "entities/user";
 
 export const AuthPage = () => {
@@ -31,14 +31,16 @@ export const AuthPage = () => {
 
     return (
         <AuthWrapper>
-            <AuthItemsWrapper>
+            <AuthItemsWrapper onSubmit={(e) => {
+                e.preventDefault()
+                return authType ? userLogin({ email, password }) : userSignUp({ email, nickname, password })}
+            }>
                 <Button onClick={() => authTypeChanged(!authType)}>{authType ? AuthType.SIGNUP : AuthType.LOGIN}</Button>
-                <Input title='Email' type='text' value={email} onChange={(e: ChangeEvent<HTMLInputElement>) => emailChanged(e.target.value)} />
+                <Input required title='Email' type='text' value={email} onChange={(e: ChangeEvent<HTMLInputElement>) => emailChanged(e.target.value)} />
                 {!authType &&
-                    <Input title='Username' type='text' value={nickname} onChange={(e: ChangeEvent<HTMLInputElement>) => nicknameChanged(e.target.value)} />}
-                <Input title='Password' type='password' value={password} onChange={(e: ChangeEvent<HTMLInputElement>) => passwordChanged(e.target.value)} />
-                <Button onClick={() =>
-                    authType ? userLogin({ email, password }) : userSignUp({ email, nickname, password })}>
+                    <Input required title='Username' type='text' value={nickname} onChange={(e: ChangeEvent<HTMLInputElement>) => nicknameChanged(e.target.value)} />}
+                <Input required title='Password' type='password' value={password} onChange={(e: ChangeEvent<HTMLInputElement>) => passwordChanged(e.target.value)} />
+                <Button>
                     {authType ? AuthType.LOGIN : AuthType.SIGNUP}
                 </Button>
             </AuthItemsWrapper>
